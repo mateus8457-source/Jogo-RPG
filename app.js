@@ -1,16 +1,28 @@
 class Personagem{
-    constructor(nome, vida, ataque){
+    constructor(nome, vida, ataque, defesa){
         this.nome = nome,
         this.vida = vida,
-        this.ataque = ataque
+        this.VidaMaxima = VidaMaxima, 
+        this.ataque = ataque,
+        this.defesa = defesa 
     }
 
+    curar(quantidade){
+        this.vida = this.vuda + quantidade
+    }
+    
     causaDano(personagem){
         personagem.recebeDano(this.ataque)
     }
 
     recebeDano(quantidade){
-        this.vida = this.vida - quantidade
+        let dano = quantidade - this.defesa
+
+        if(quantidade < this.defesa){
+            let dano = 0
+        }
+        
+        this.vida = this.vida - dano
 
         if(this.vida <= 0){
             this.vida = "eliminado"
@@ -29,15 +41,14 @@ class Personagem{
 
 }
 
-const druida = new Personagem("kode", 80, 25)
-const guerreiro = new Personagem("Thorin", 60, 20)
-const mago = new Personagem("Gandalfe", 60, 35)
-const arqueiro = new Personagem("Legolas", 80, 25)
-const tanque = new Personagem("Reinhardt", 90, 15)
-const necromante = new Personagem("Mortis", 70, 20)
-const assassino = new Personagem("Zephyr", 50, 30)
+const druida = new Personagem("kode", 80, 25, 8)
+const guerreiro = new Personagem("Thorin", 60, 20, 15)
+const mago = new Personagem("Gandalfe", 60, 35, 5)
+const arqueiro = new Personagem("Legolas", 80, 25, 10)
+const tanque = new Personagem("Reinhardt", 90, 15, 15)
+const necromante = new Personagem("Mortis", 70, 20, 9)
+const assassino = new Personagem("Zephyr", 50, 30, 6)
 
-druida.causaDano(mago)
 druida.causaDano(mago)
 
 console.log(mago.mostrarStatus())
