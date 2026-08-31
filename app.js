@@ -2,13 +2,17 @@ class Personagem{
     constructor(nome, vida, ataque, defesa){
         this.nome = nome,
         this.vida = vida,
-        this.VidaMaxima = VidaMaxima, 
+        this.vidaMax = vida, 
         this.ataque = ataque,
         this.defesa = defesa 
     }
 
     curar(quantidade){
-        this.vida = this.vuda + quantidade
+        this.vida = this.vida + quantidade
+
+        if (this.vida > this.vidaMax){
+            this.vida = this.vidaMax
+        }
     }
     
     causaDano(personagem){
@@ -41,14 +45,58 @@ class Personagem{
 
 }
 
-const druida = new Personagem("kode", 80, 25, 8)
-const guerreiro = new Personagem("Thorin", 60, 20, 15)
-const mago = new Personagem("Gandalfe", 60, 35, 5)
-const arqueiro = new Personagem("Legolas", 80, 25, 10)
-const tanque = new Personagem("Reinhardt", 90, 15, 15)
-const necromante = new Personagem("Mortis", 70, 20, 9)
-const assassino = new Personagem("Zephyr", 50, 30, 6)
+class Guerreiro extends Personagem {        //extends = herença
+    golpePesado(personagem){
+       personagem.recebeDano(this.ataque * 2)
+    }
+}
+
+class Mago extends Personagem {
+    bolaDeFogo(personagem){
+     personagem.recebeDano(this.ataque + 15)
+    }
+}
+
+class Arqueiro extends Personagem {
+    tiroPreciso(personagem){
+        personagem.recebeDano(this.ataque + 10)
+    } 
+}
+
+class Necromante extends Personagem {
+    invocaçãoDosMortos(personagem){
+        personagem.recebeDano(this.ataque + 20)
+    }
+}
+
+class Assassino extends Personagem {
+    abateSilencioso(personagem){
+        personagem.recebeDano(this.ataque + 100)
+    }
+}
+
+class Druida extends Personagem {
+    metamorfose(personagem){
+        personagem.recebeDano(this.ataque + 30)
+    } 
+}
+
+class Tanque extends Personagem {
+    saltoMortal(personagem){
+        personagem.recebeDano(this.ataque + 50)
+    }
+}
+
+
+const druida = new Druida("kode", 70, 25, 8)
+const guerreiro = new Guerreiro("Thorin", 60, 20, 15)
+const mago = new Mago("Gandalfe", 60, 35, 5)
+const arqueiro = new Arqueiro("Legolas", 80, 25, 10)
+const tanque = new Tanque("Reinhardt", 90, 15, 15)
+const necromante = new Necromante("Mortis", 70, 20, 9)
+const assassino = new Assassino("Zephyr", 50, 30, 6)
 
 druida.causaDano(mago)
+mago.curar(15)
 
 console.log(mago.mostrarStatus())
