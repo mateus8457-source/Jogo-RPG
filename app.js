@@ -96,7 +96,32 @@ const tanque = new Tanque("Reinhardt", 90, 15, 15)
 const necromante = new Necromante("Mortis", 70, 20, 9)
 const assassino = new Assassino("Zephyr", 50, 30, 6)
 
-druida.causaDano(mago)
-mago.curar(15)
+const personagens = [
+    druida,
+    guerreiro,
+    mago,
+    arqueiro, 
+    tanque, 
+    necromante,  
+    assassino
+]
 
-console.log(mago.mostrarStatus())
+  personagens.forEach(function(personagem){
+  personagem.mostrarStatus()  
+})
+
+let turno = 1
+let jogadorAtual = 0
+
+function proximoTurno(){
+    turno = turno + 1
+    jogadorAtual = jogadorAtual === 0 ? 1 : 0  // 0 ? 1 : 0 = Operador ternário
+
+}
+
+
+    proximoTurno()
+    proximoTurno()
+
+    console.log(turno)
+    console.log(jogadorAtual)
