@@ -119,9 +119,6 @@ function proximoTurno(){
 
 }
 
+const vidaGuerreiro = document.getElementById("vida-guerreiro")
 
-    proximoTurno()
-    proximoTurno()
-
-    console.log(turno)
-    console.log(jogadorAtual)
+vidaGuerreiro.innerText = guerreiro.vida
